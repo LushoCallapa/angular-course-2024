@@ -10,4 +10,15 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title: number = 12;
+  constructor () {
+    console.log('substract', this.subtract(8,4));
+  }
+
+  public sum(num1: number, num2: number ): number{
+    return num1 + num2;
+  }
+
+  private subtract(num1: number, num2: number ): number {
+    return num1 - num2;
+  }
 }
