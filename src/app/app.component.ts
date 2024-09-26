@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { UserCardComponent } from './user-card/user-card.component';
 
 interface IPerson{
   name:string,
@@ -10,7 +11,7 @@ interface IPerson{
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, UserCardComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -24,6 +25,9 @@ export class AppComponent {
     age: 20
   }
 
+  var1 = 0
+  var2 = null
+  var3='hola';
   pets: number[] = [1,2,3,4,5];
   parents: number[] = [7,8,9,10];
   constructor () {
@@ -33,6 +37,9 @@ export class AppComponent {
     console.log("Spreed Operator",both)
 
     console.log("Rest Operator", this.sum2(1,2,3,4,5))
+    console.log("Nullish Cualesing", this.var2 ?? this.var3)
+    console.log("OR", this.var1 || this.var3)
+
     // console.log('substract', this.subtract(8,4));
     // console.log('MAP: ',this.animals.map((animal) => (animal + 'new') ));
     // console.log('FOREACH: ',this.animals.forEach((animal) => (animal + 'new') ));
