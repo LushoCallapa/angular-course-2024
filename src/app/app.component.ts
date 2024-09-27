@@ -70,6 +70,10 @@ export class AppComponent {
     }
   }
 
+  public receiveData(data: any){
+    console.log("Print Father Component",data);
+  }
+
   // sumar(): number{
   //   return 1 + 2;
   // }

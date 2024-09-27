@@ -2,4 +2,8 @@
 <p>Add {{ sum(2,title) }}</p>
 <!-- <p>Subtract {{subtract}}</p> -->
 <p>Only even {{getArray()}}</p>
-<user-card [name]="'Juan'" [email]="'juan@gmail.com'"></user-card>  
+<user-card 
+[name]="'Juan'" 
+[email]="'juan@gmail.com'"  
+(sendData)="receiveData($event)">
+</user-card>
