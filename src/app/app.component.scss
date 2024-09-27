@@ -1,0 +1,17 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    .calculator {
+        padding: 32px;
+        flex: 1; 
+        max-width: 50%;
+    }
+    
+    .history {
+        padding: 32px;
+        flex: 1;  
+        max-width: 50%;
+    }
+}

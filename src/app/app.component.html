@@ -7,3 +7,8 @@
 [email]="'juan@gmail.com'"  
 (sendData)="receiveData($event)">
 </user-card>
+<p> RESULT: {{result}}</p>
+<div class="container">
+    <calculator class="calculator" (sum)="onResult($event)" (mul)="onResult($event)" (reset)="onReset($event)"></calculator>
+    <history class="history" [history]="history"></history>
+</div>
