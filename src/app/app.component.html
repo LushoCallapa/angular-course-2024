@@ -1,6 +1,6 @@
-<h1>Hello, {{ 2 + title }}</h1>
+<!-- <h1>Hello, {{ 2 + title }}</h1>
 <p>Add {{ sum(2,title) }}</p>
-<!-- <p>Subtract {{subtract}}</p> -->
+ <p>Subtract {{subtract}}</p>
 <p>Only even {{getArray()}}</p>
 <user-card [name]="'Juan'" [email]="'juan@gmail.com'" (sendData)="receiveData($event)">
     <p>My HTML from father</p>
@@ -42,4 +42,20 @@
     @case(0){<p>new syntax, var is 0</p>}
     @case(1){<p>new syntax, var is 1</p>}
     @default{<p>new syntax, default value</p>}
-}
+} -->
+
+<div class="wrapper">
+    <div class="container-persons">
+        @for (item of persons; track $index) {
+            <person-card [person]="item"></person-card>
+        }
+    </div>
+
+    <div class="container-persons-data">
+        <p class="styled-text">total persons female = {{countFemale()}}</p>
+        <p class="styled-text">total persons male = {{countMale()}}</p>
+        <p class="styled-text">discount = {{countDiscount()}}</p>
+        <button (click)="deleteDiscount()" class="styled-button">Borrar personas con descuento</button>
+    </div>
+</div>
+

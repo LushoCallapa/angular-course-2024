@@ -1,0 +1,13 @@
+<div class="container-person">
+    <div class="header">
+        <p>PERSONA</p>
+        @if(person.age >=18){
+            <div class="discount">discount</div>
+        }
+    </div>
+    <div class="container-data">
+        <p class="person-data">gender = {{person.gender}}</p>
+        <p class="person-data">{{person.name}}</p>
+        <p class="person-data">age = {{person.age}}</p>
+    </div>
+</div>
