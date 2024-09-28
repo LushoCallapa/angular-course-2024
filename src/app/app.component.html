@@ -11,8 +11,35 @@
     <calculator class="calculator" (sum)="onResult($event)" (mul)="onResult($event)" (reset)="onReset($event)"></calculator>
     <history class="history" [history]="history"></history>
 </div>
-<p *ngIf="1 === 1">Variables are equeals</p>
+<p *ngIf="var1 === var2; else elseold">Variables are equeals</p>
+<ng-template #elseold>
+    <p>old result is false</p>
+</ng-template>
 
-@if( 1 === 1){
-    <p>new Sintax, variables are equeals</p>
+
+@if( var1 === var2){  
+    <p>new Syntax, variables are equeals</p>
+}
+@else{
+    <p>new syntax result is false</p>
+}
+
+<p *ngFor="let item of ['a','b','c','d','e','f','g']; let i = index">
+    old for, value: {{item}}, index: {{i}}
+</p>
+
+@for (item of ['a','b','c','d','e','f','g','h']; track $index) {
+    <p>new for, {{item}}, index{{$index}}</p>
+}
+
+<div [ngSwitch]="var1">
+    <p *ngSwitchCase="0"> Var is 0</p>
+    <p *ngSwitchCase="1"> Var is 1</p>
+    <p *ngDefault> Default Value</p>
+</div>
+
+@switch(var1){
+    @case(0){<p>new syntax, var is 0</p>}
+    @case(1){<p>new syntax, var is 1</p>}
+    @default{<p>new syntax, default value</p>}
 }
