@@ -21,6 +21,7 @@ interface IPerson{
 })
 export class AppComponent {
   
+  userCardCreated: boolean = true; 
   persons: IPerson[] 
   constructor(){
     this.persons = [ {name: 'Luis', age: 20,gender: 'male'} , {name: 'Juana', age: 17,gender: 'female'}, {name: 'Roberto', age: 16,gender: 'male'},{name: 'Rafaela', age: 20,gender: 'female'}]
@@ -41,22 +42,18 @@ export class AppComponent {
   public deleteDiscount(){
     this.persons = this.persons.filter(person => person.age < 18);
   }
-  // history: Array<[string, number]> = [];
-  // result: number = 0;
-  // title: number = 12;
-  // animals: string[] = ['a','b','c','d','e','f','g'];
+  history: Array<[string, number]> = [];
+  result: number = 0;
+  title: number = 12;
+  animals: string[] = ['a','b','c','d','e','f','g'];
   
-  // person: IPerson = {
-  //   name: 'Luis',
-  //   lastName: 'Callapa',
-  //   age: 20
-  // }
 
-  // var1 = 0
-  // var2 = null
-  // var3='hola';
-  // pets: number[] = [1,2,3,4,5];
-  // parents: number[] = [7,8,9,10];
+
+  var1 = 0
+  var2 = null
+  var3='hola';
+  pets: number[] = [1,2,3,4,5];
+  parents: number[] = [7,8,9,10];
   // constructor () {
   //   const {name,age} = this.person;
   //   console.log('destructuracion',name+' '+ age);
@@ -75,50 +72,50 @@ export class AppComponent {
   //   // console.log('INDEXOF: ',this.animals.indexOf('c'));
   // }
 
-  // public sum2(...persons: number[]){
-  //   //return persons[0] + persons[1];
-  //   return persons.reduce((acc, valor) => (acc+valor) , 0);
-  // }
+  public sum2(...persons: number[]){
+    //return persons[0] + persons[1];
+    return persons.reduce((acc, valor) => (acc+valor) , 0);
+  }
 
-  // public sum(num1: number, num2: number ): number{
-  //   return num1 + num2;
-  // }
+  public sum(num1: number, num2: number ): number{
+    return num1 + num2;
+  }
 
-  // private subtract(num1: number, num2: number ): number {
-  //   return num1 - num2;
-  // }
+  private subtract(num1: number, num2: number ): number {
+    return num1 - num2;
+  }
 
-  // public getArray(){
-  //   const persons: number[] = [1,2,3,4,5];
-  //   for(let i =0; i < persons.length;i++){
-  //       if(persons[i]%2 == 0){
-  //         //console.log('person =', persons[i])
-  //       }
-  //   }
-  // }
+  public getArray(){
+    const persons: number[] = [1,2,3,4,5];
+    for(let i =0; i < persons.length;i++){
+        if(persons[i]%2 == 0){
+          //console.log('person =', persons[i])
+        }
+    }
+  }
 
-  // public receiveData(data: any){
-  //   console.log("Print Father Component",data);
-  // }
+  public receiveData(data: any){
+    console.log("Print Father Component",data);
+  }
 
-  // public onResult(data: any){
-  //   this.result = data.result ?? 0;
-  //   this.newResult(data);
-  // }
+  public onResult(data: any){
+    this.result = data.result ?? 0;
+    this.newResult(data);
+  }
   
-  // public newResult(data: any){
-  //   const { type, result } = data ?? ["", 0];
-  //   this.history.push([type, result]);
-  // }
+  public newResult(data: any){
+    const { type, result } = data ?? ["", 0];
+    this.history.push([type, result]);
+  }
 
 
-  // public onReset(data: any){
-  //   this.result = 0; 
-  // }
-  // sumar(): number{
-  //   return 1 + 2;
-  // }
-  // public  suma = () => {
-  //   return 1 + 2;
-  // }
+  public onReset(data: any){
+    this.result = 0; 
+  }
+  sumar(): number{
+    return 1 + 2;
+  }
+  public  suma = () => {
+    return 1 + 2;
+  }
 }
