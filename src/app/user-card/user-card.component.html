@@ -4,6 +4,7 @@
     <p>INPUT EMAIL: {{ email }}</p>
 
     <input type="text" [(ngModel)] = "password">
+    <button #buttonTest (click)="onSendData()"> send Data</button>
 
     <button (click)="onSendData()"> Send Data</button>
 
