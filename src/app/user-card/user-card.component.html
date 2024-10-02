@@ -3,6 +3,8 @@
     <p>INPUT NAME: {{ name }}</p>
     <p>INPUT EMAIL: {{ email }}</p>
 
+    <input type="text" [(ngModel)] = "password">
+
     <button (click)="onSendData()"> Send Data</button>
 
     <p>PASSWORD = {{password}}</p>
