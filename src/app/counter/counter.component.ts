@@ -15,7 +15,7 @@ export class CounterComponent {
       console.log('AfterRender', this.sum)
     })
     afterNextRender(()=>{
-      console.log('AfterNEXTRender', this.sum)
+      console.log('AfterNEXT Render', this.sum)
     })
   }
 }
