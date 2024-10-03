@@ -1,5 +1,7 @@
 import {
+  AfterContentChecked,
   AfterContentInit,
+  AfterViewChecked,
   AfterViewInit,
   Component,
   DoCheck,
@@ -29,7 +31,9 @@ export class UserCardComponent
     OnChanges,
     DoCheck,
     AfterContentInit,
-    AfterViewInit
+    AfterViewInit,
+    AfterContentChecked,
+    AfterViewChecked
 {
   @Input() name: string = "";
   @Input() email: string = "";
@@ -81,6 +85,14 @@ export class UserCardComponent
     if(this.buttonTest){
       this.buttonTest.nativeElement.textContent = "Button Test Afeter View Init";
     }
+  }
+
+  ngAfterContentChecked(): void {
+    console.log("AfterContentChecked")
+  }
+
+  ngAfterViewChecked(): void {
+    console.log("AfterViewChecked")
   }
   public onSendData() {
     this.sendData.emit("hi from child component");
