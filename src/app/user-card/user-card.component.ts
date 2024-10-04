@@ -1,3 +1,4 @@
+import { CommonModule } from "@angular/common";
 import {
   AfterContentChecked,
   AfterContentInit,
@@ -20,7 +21,7 @@ import { FormsModule } from "@angular/forms";
 @Component({
   selector: "user-card",
   standalone: true,
-  imports: [FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: "./user-card.component.html",
   styleUrl: "./user-card.component.scss",
 })
