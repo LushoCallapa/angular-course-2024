@@ -7,5 +7,6 @@ import { CardComponent } from "./card/card.component";
 @NgModule({
   declarations: [AlertComponent, NavbarComponent, CardComponent],
   imports: [CommonModule],
+  exports: [AlertComponent, NavbarComponent, CardComponent],
 })
-export class SharedModuleModule {}
+export class SharedModule {}
