@@ -6,6 +6,7 @@ import { HistoryComponent } from './history/history.component';
 import { CommonModule } from '@angular/common';
 import { PersonCardComponent } from './person-card/person-card.component';
 import { CounterComponent } from './counter/counter.component';
+import { filter, from, map, tap } from 'rxjs';
 
 interface IPerson{
   name:string,
@@ -14,49 +15,87 @@ interface IPerson{
 }
 
 @Component({
-  selector: 'app-root',
+  selector: "app-root",
   standalone: true,
-  imports: [RouterOutlet, UserCardComponent, CalculatorComponent, HistoryComponent,CommonModule, PersonCardComponent, CounterComponent],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  imports: [
+    RouterOutlet,
+    UserCardComponent,
+    CalculatorComponent,
+    HistoryComponent,
+    CommonModule,
+    PersonCardComponent,
+    CounterComponent,
+  ],
+  templateUrl: "./app.component.html",
+  styleUrl: "./app.component.scss",
 })
 export class AppComponent {
-  
-  users = [{name: 'abc', email: 'abc@gmail.com'}, {name:'dfg', email: 'pepe@gmail.com'}];
+  users = [
+    { name: "abc", email: "abc@gmail.com" },
+    { name: "dfg", email: "pepe@gmail.com" },
+  ];
   selectedUser: any = this.users[0];
-  userCardCreated: boolean = true; 
-  persons: IPerson[] 
-  constructor(){
-    this.persons = [ {name: 'Luis', age: 20,gender: 'male'} , {name: 'Juana', age: 17,gender: 'female'}, {name: 'Roberto', age: 16,gender: 'male'},{name: 'Rafaela', age: 20,gender: 'female'}]
+  userCardCreated: boolean = true;
+  persons: IPerson[];
+  youtube = from([1, 2, 3, 4, 5, 6]);
+  constructor() {
+    this.persons = [
+      { name: "Luis", age: 20, gender: "male" },
+      { name: "Juana", age: 17, gender: "female" },
+      { name: "Roberto", age: 16, gender: "male" },
+      { name: "Rafaela", age: 20, gender: "female" },
+    ];
+    this.youtube.subscribe((res) => {
+      console.log("Susbribed 1 You Tube Data", res);
+    });
   }
 
-  public countFemale(){
-    return this.persons.filter(person => person.gender === 'female').length;
+  public addVideo() {
+    this.youtube
+      .pipe(
+        map((res) => {
+          console.log('MAP',res);
+          if(res % 2 === 0){
+            return res;
+          } 
+          else{
+            return null;
+          }
+        }),
+        tap((res)=> console.log("VALUE, TAP",res)),
+        filter((res :number | null)=> res!=null)
+      )
+      .subscribe((res) => {
+        console.log("Susbribed 2 You Tube Data", res);
+      });
   }
 
-  public countMale(){
-    return this.persons.filter(person => person.gender === 'male').length;
+  public countFemale() {
+    return this.persons.filter((person) => person.gender === "female").length;
   }
 
-  public countDiscount(){
-    return this.persons.filter(person => person.age >= 18).length;
+  public countMale() {
+    return this.persons.filter((person) => person.gender === "male").length;
   }
-  
-  public deleteDiscount(){
-    this.persons = this.persons.filter(person => person.age < 18);
+
+  public countDiscount() {
+    return this.persons.filter((person) => person.age >= 18).length;
+  }
+
+  public deleteDiscount() {
+    this.persons = this.persons.filter((person) => person.age < 18);
   }
   history: Array<[string, number]> = [];
   result: number = 0;
   title: number = 12;
-  animals: string[] = ['a','b','c','d','e','f','g'];
-  
+  animals: string[] = ["a", "b", "c", "d", "e", "f", "g"];
 
+  var1 = 0;
+  var2 = null;
+  var3 = "hola";
+  pets: number[] = [1, 2, 3, 4, 5];
+  parents: number[] = [7, 8, 9, 10];
 
-  var1 = 0
-  var2 = null
-  var3='hola';
-  pets: number[] = [1,2,3,4,5];
-  parents: number[] = [7,8,9,10];
   // constructor () {
   //   const {name,age} = this.person;
   //   console.log('destructuracion',name+' '+ age);
@@ -75,50 +114,49 @@ export class AppComponent {
   //   // console.log('INDEXOF: ',this.animals.indexOf('c'));
   // }
 
-  public sum2(...persons: number[]){
+  public sum2(...persons: number[]) {
     //return persons[0] + persons[1];
-    return persons.reduce((acc, valor) => (acc+valor) , 0);
+    return persons.reduce((acc, valor) => acc + valor, 0);
   }
 
-  public sum(num1: number, num2: number ): number{
+  public sum(num1: number, num2: number): number {
     return num1 + num2;
   }
 
-  private subtract(num1: number, num2: number ): number {
+  private subtract(num1: number, num2: number): number {
     return num1 - num2;
   }
 
-  public getArray(){
-    const persons: number[] = [1,2,3,4,5];
-    for(let i =0; i < persons.length;i++){
-        if(persons[i]%2 == 0){
-          //console.log('person =', persons[i])
-        }
+  public getArray() {
+    const persons: number[] = [1, 2, 3, 4, 5];
+    for (let i = 0; i < persons.length; i++) {
+      if (persons[i] % 2 == 0) {
+        //console.log('person =', persons[i])
+      }
     }
   }
 
-  public receiveData(data: any){
-    console.log("Print Father Component",data);
+  public receiveData(data: any) {
+    console.log("Print Father Component", data);
   }
 
-  public onResult(data: any){
+  public onResult(data: any) {
     this.result = data.result ?? 0;
     this.newResult(data);
   }
-  
-  public newResult(data: any){
+
+  public newResult(data: any) {
     const { type, result } = data ?? ["", 0];
     this.history.push([type, result]);
   }
 
-
-  public onReset(data: any){
-    this.result = 0; 
+  public onReset(data: any) {
+    this.result = 0;
   }
-  sumar(): number{
+  sumar(): number {
     return 1 + 2;
   }
-  public  suma = () => {
+  public suma = () => {
     return 1 + 2;
-  }
+  };
 }
