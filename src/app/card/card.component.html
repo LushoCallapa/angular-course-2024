@@ -1,4 +1,3 @@
-<p>{{state}}</p>
 <div *ngIf="state === 'Personal'">
     <p>Name: {{ selectedItem.name }}</p>
     <p>LastName: {{ selectedItem.lastName }}</p>
@@ -6,8 +5,20 @@
     <div *ngIf="selectedItem.type === 'student'">
         <p>Promedio: {{ calculateAverage() }}</p>
     </div>
+    <div *ngIf="selectedItem.type === 'professor'">
+        <p>Subject: {{ selectedItem.subject }}</p>
+    </div>
 </div>
 
 <div *ngIf="state === 'Geográfico'">
-    <p>{{ selectedItem.address.number }}</p><p>{{ selectedItem.address.street }}</p><p> {{ selectedItem.address.zone }}</p>
+    <p>Address: {{ selectedItem.address.number }} {{ selectedItem.address.street }}, {{ selectedItem.address.zone }}</p>
+    <p>Contry: {{ selectedItem.country }}</p>
+    <p>Province: {{ selectedItem.province }}</p>
 </div>
+
+<div *ngIf="state === 'Mensaje'">
+    <h2>Mensajes</h2>
+    <ul>
+      <li *ngFor="let message of selectedItem.messages">{{ message }}</li>
+    </ul>
+  </div>

@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { ItemComponent } from '../item/item.component';
 interface Address {
   number: string;
   street: string;
@@ -23,7 +24,7 @@ interface ItemData {
 @Component({
   selector: 'card',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ItemComponent],
   templateUrl: './card.component.html',
   styleUrl: './card.component.scss'
 })
