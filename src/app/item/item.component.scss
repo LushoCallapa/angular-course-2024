@@ -1,0 +1,52 @@
+.student {
+    background-color: cyan;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    margin: 8px;
+}
+
+.student p {
+    margin: 2px; 
+    margin-right: 10px;
+}
+
+.student button {
+    margin-left: 5px;
+    background-color: white;
+    border-radius: 8px;
+}
+.student button:hover {
+    background-color: lightgray;
+    cursor: pointer;
+}
+
+.professor {
+    background-color: orange;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    margin: 8px;
+}
+.professor p {
+    margin: 2px; 
+    margin-right: 10px;
+}
+
+.professor button {
+    margin-left: 5px;
+    background-color: white;
+    border-radius: 8px;
+}
+.professor button:hover {
+    background-color: lightgray;
+    cursor: pointer;
+}
+
+.message {
+    background-color: white;
+    border: 1px solid black;
+    margin: 8px;
+}

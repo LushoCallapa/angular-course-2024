@@ -1,0 +1,13 @@
+<p>{{state}}</p>
+<div *ngIf="state === 'Personal'">
+    <p>Name: {{ selectedItem.name }}</p>
+    <p>LastName: {{ selectedItem.lastName }}</p>
+    <p>Type: {{ selectedItem.type }}</p>
+    <div *ngIf="selectedItem.type === 'student'">
+        <p>Promedio: {{ calculateAverage() }}</p>
+    </div>
+</div>
+
+<div *ngIf="state === 'Geográfico'">
+    <p>{{ selectedItem.address.number }}</p><p>{{ selectedItem.address.street }}</p><p> {{ selectedItem.address.zone }}</p>
+</div>

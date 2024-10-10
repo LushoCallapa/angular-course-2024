@@ -1,0 +1,19 @@
+.container-search {
+    display: inline-block;
+    border-radius: 4px;
+    padding: 8px;
+    border: 1px solid black;
+    
+}
+.input-class, .button-search{
+    margin: 0px 4px;
+}
+.button-search {
+    background-color: white;
+    border-radius: 8px;
+}
+
+.button-search:hover {
+    background-color: lightgray;
+    cursor: pointer;
+}

@@ -1,0 +1,16 @@
+@if(data.type === 'student'){
+    <div class="student">
+        <p>{{ data.name }} {{ data.lastName }} - {{ data.type }}</p>
+        <button (click)="onShow()"> SHOW </button>
+        <button (click)="onDelete()"> DELETE </button>
+    </div>
+    
+}@else if (data.type === 'professor'){
+    <div class="professor">
+        <p>{{ data.name }} {{ data.lastName }} - {{ data.type }}</p>
+        <button (click)="onShow()"> SHOW </button>
+        <button (click)="onDelete()" > DELETE </button>
+    </div>
+}@else{
+    <p>PEPE</p>
+}
