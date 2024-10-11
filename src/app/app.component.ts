@@ -8,6 +8,7 @@ import { PersonCardComponent } from './person-card/person-card.component';
 import { CounterComponent } from './counter/counter.component';
 import { filter, from, map, tap } from 'rxjs';
 import { AppColorsDirective } from './app-colors.directive';
+import { CreateHtmlDirective } from './create-html.directive';
 
 interface IPerson{
   name:string,
@@ -26,7 +27,8 @@ interface IPerson{
     CommonModule,
     PersonCardComponent,
     CounterComponent,
-    AppColorsDirective
+    AppColorsDirective,
+    CreateHtmlDirective
   ],
   templateUrl: "./app.component.html",
   styleUrl: "./app.component.scss",
@@ -37,7 +39,7 @@ export class AppComponent {
     { name: "dfg", email: "pepe@gmail.com" },
   ];
   selectedUser: any = this.users[0];
-  userCardCreated: boolean = true;
+  userCardCreated: boolean = false;
   persons: IPerson[];
   youtube = from([1, 2, 3, 4, 5, 6]);
   constructor() {
@@ -88,7 +90,7 @@ export class AppComponent {
     this.persons = this.persons.filter((person) => person.age < 18);
   }
 
-  public getColor(value: string){
+  public getColor(value: any){
     console.log("value", value);
   }
   history: Array<[string, number]> = [];

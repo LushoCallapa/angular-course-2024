@@ -21,7 +21,7 @@
 <p>user card destroyed</p>
 }
 
-<button (click)="addVideo()">ADD new Video to Youtube</button>\
+<button (click)="addVideo()">ADD new Video to Youtube</button>
 <div
   [ngColors]="'green'"
   [defaultColor]="'pink'"
@@ -30,6 +30,13 @@
   style="border: 1px solid orange"
 >
   My Costumers Div
+</div>
+
+<button (click) = "userCardCreated= !userCardCreated">Change userCardCreated</button>
+
+<div *ngCreateHtml = "userCardCreated" (sendMessage)="getColor($event)">
+    <p>My Custom Structural Directive</p>
+    <p>Example</p>
 </div>
 
 <!-- <p> RESULT: {{result}}</p>
