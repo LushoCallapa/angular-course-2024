@@ -9,15 +9,29 @@
 <button (click) = "selectedUser = users[1]">Change to user 1</button> -->
 
 @if(userCardCreated){
-    <user-card [name]="selectedUser.name" [email]="selectedUser.email" (sendData)="receiveData($event)">
-        <p>My HTML from father</p>
-        <button>My button from father</button>
-    </user-card>
+<user-card
+  [name]="selectedUser.name"
+  [email]="selectedUser.email"
+  (sendData)="receiveData($event)"
+>
+  <p>My HTML from father</p>
+  <button>My button from father</button>
+</user-card>
 } @else{
-    <p> user card destroyed</p>
+<p>user card destroyed</p>
 }
 
-<button (click) = "addVideo()" > ADD new Video to Youtube</button>
+<button (click)="addVideo()">ADD new Video to Youtube</button>\
+<div
+  [ngColors]="'green'"
+  [defaultColor]="'pink'"
+  (colorChange)="getColor($event)"
+  (colorDoubleCheck)="getColor($event)"
+  style="border: 1px solid orange"
+>
+  My Costumers Div
+</div>
+
 <!-- <p> RESULT: {{result}}</p>
 <div class="container">
     <calculator class="calculator" (sum)="onResult($event)" (mul)="onResult($event)" (reset)="onReset($event)"></calculator>

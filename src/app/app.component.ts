@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { PersonCardComponent } from './person-card/person-card.component';
 import { CounterComponent } from './counter/counter.component';
 import { filter, from, map, tap } from 'rxjs';
+import { AppColorsDirective } from './app-colors.directive';
 
 interface IPerson{
   name:string,
@@ -25,6 +26,7 @@ interface IPerson{
     CommonModule,
     PersonCardComponent,
     CounterComponent,
+    AppColorsDirective
   ],
   templateUrl: "./app.component.html",
   styleUrl: "./app.component.scss",
@@ -84,6 +86,10 @@ export class AppComponent {
 
   public deleteDiscount() {
     this.persons = this.persons.filter((person) => person.age < 18);
+  }
+
+  public getColor(value: string){
+    console.log("value", value);
   }
   history: Array<[string, number]> = [];
   result: number = 0;
