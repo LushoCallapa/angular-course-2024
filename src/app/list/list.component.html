@@ -1,4 +1,4 @@
 <search (searchChanged)="onSearch($event)"></search>
 @for (item of filteredDataList; track $index) {
-    <item [data]="item" (deleteItem)="onDelete(item)" (showItem)="onShow(item)"></item>
+    <item [data]="item" [message]="''" (deleteItem)="onDelete(item)" (showItem)="onShow(item)"></item>
 }

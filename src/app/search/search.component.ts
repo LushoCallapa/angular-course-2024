@@ -15,7 +15,6 @@ export class SearchComponent {
   @Output() searchChanged = new EventEmitter<string>();
 
   public searchItem() {
-    console.log(this.searchText)
     this.searchChanged.emit(this.searchText);
   }
 }

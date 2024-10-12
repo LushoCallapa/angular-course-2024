@@ -1,9 +1,13 @@
-<list (showItem)="onShow($event)" class="list-component"></list>
-@if(showCard){
-    <div class="button-container">
-        <button (click)="changeState('Personal')">Personal</button>
-        <button (click)="changeState('Geográfico')">Geográfico</button>
-        <button (click)="changeState('Mensaje')">Mensaje</button>
+<div class="main-container">
+  <list (showItem)="onShow($event)" class="list-component"></list>
+  @if(showCard){
+      <div class="card-container">
+        <div class="button-container">
+          <button (click)="changeState('Personal')">Personal</button>
+          <button (click)="changeState('Geográfico')">Geográfico</button>
+          <button (click)="changeState('Mensaje')">Mensaje</button>
+        </div>
+      <card [state] = "state" [selectedItem] = "selectedItem" ></card>
       </div>
-    <card [state] = "state" [selectedItem] = "selectedItem" ></card>
-}
+  }
+</div>

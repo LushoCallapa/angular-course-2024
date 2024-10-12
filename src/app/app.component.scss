@@ -1,7 +1,15 @@
+.main-container {
+  display: flex;
+}
+
 .list-component {
-  width: 33%;
+  margin-right: 10px;
+}
+
+.card-container {
   display: inline-block;
 }
+
 .button-container {
   margin-bottom: 10px;
 }

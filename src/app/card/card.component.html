@@ -1,4 +1,4 @@
-<div *ngIf="state === 'Personal'">
+<div *ngIf="state === 'Personal'" class="section-container">
     <p>Name: {{ selectedItem.name }}</p>
     <p>LastName: {{ selectedItem.lastName }}</p>
     <p>Type: {{ selectedItem.type }}</p>
@@ -10,15 +10,17 @@
     </div>
 </div>
 
-<div *ngIf="state === 'Geográfico'">
+<div *ngIf="state === 'Geográfico'" class="section-container">
     <p>Address: {{ selectedItem.address.number }} {{ selectedItem.address.street }}, {{ selectedItem.address.zone }}</p>
     <p>Contry: {{ selectedItem.country }}</p>
     <p>Province: {{ selectedItem.province }}</p>
 </div>
 
-<div *ngIf="state === 'Mensaje'">
-    <h2>Mensajes</h2>
-    <ul>
-      <li *ngFor="let message of selectedItem.messages">{{ message }}</li>
-    </ul>
-  </div>
+<div *ngIf="state === 'Mensaje'" class="section-container">
+    <div class="search-container">
+        <search (searchChanged)="onSearch($event)"></search>
+    </div>
+    <div *ngFor="let message of filteredMessages" class="item-container">
+        <item [data]="selectedItem" [message]="message"></item>
+    </div>
+</div>

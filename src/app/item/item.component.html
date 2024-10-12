@@ -1,4 +1,9 @@
-@if(data.type === 'student'){
+@if(message !== ''){
+    <div class="message">
+        <p>{{ message }}</p>
+    </div>
+}
+@else if(data.type === 'student'){
     <div class="student">
         <p>{{ data.name }} {{ data.lastName }} - {{ data.type }}</p>
         <button (click)="onShow()"> SHOW </button>
@@ -10,9 +15,5 @@
         <p>{{ data.name }} {{ data.lastName }} - {{ data.type }}</p>
         <button (click)="onShow()"> SHOW </button>
         <button (click)="onDelete()" > DELETE </button>
-    </div>
-}@else{
-    <div class="message">
-        <p>{{ data }}</p>
     </div>
 }

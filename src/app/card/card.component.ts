@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { ItemComponent } from '../item/item.component';
+import { SearchComponent } from '../search/search.component';
 interface Address {
   number: string;
   street: string;
@@ -24,13 +25,19 @@ interface ItemData {
 @Component({
   selector: 'card',
   standalone: true,
-  imports: [CommonModule, ItemComponent],
+  imports: [CommonModule, ItemComponent, SearchComponent],
   templateUrl: './card.component.html',
   styleUrl: './card.component.scss'
 })
 export class CardComponent {
   @Input() state: string = "Personal";
   @Input() selectedItem!: ItemData;
+
+  filteredMessages: string[] = [];
+
+  ngOnInit() {
+    this.filteredMessages = [...this.selectedItem.messages];
+  }
 
   calculateAverage(): number {
     const scores = [
@@ -41,5 +48,11 @@ export class CardComponent {
 
     if (scores.length === 0) return 0;
     return scores.reduce((a, b) => a + b, 0) / scores.length;
+  }
+  public onSearch(searchText: string) {
+    console.log("data",searchText)
+    this.filteredMessages = this.selectedItem.messages.filter(message =>
+      message.toLowerCase().includes(searchText.toLowerCase())
+    );
   }
 }

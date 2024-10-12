@@ -28,7 +28,8 @@ interface ItemData {
   styleUrl: './item.component.scss'
 })
 export class ItemComponent {
-  @Input() data!: ItemData; 
+  @Input() data!: ItemData;
+  @Input() message: string=''; 
 
   @Output() deleteItem = new EventEmitter<void>();
   @Output() showItem = new EventEmitter<ItemData>();
