@@ -8,8 +8,23 @@
 <button (click) = "selectedUser = users[0]">Change to user 0</button>
 <button (click) = "selectedUser = users[1]">Change to user 1</button> -->
 
-@if(userCardCreated){
-<user-card
+<p>PIPES</p>
+
+<P> {{ users | json }} </P>
+<p> {{ 'juan' | uppercase }} </p>
+<p> {{ 'JUAN' | lowercase }} </p>
+<p> {{ 'hola mundo' | titlecase }}</p>
+<p> {{ 'Tue Oct 27 15:35:08 CDT 2009' | date: 'dd/MM/YYYY'  }} </p>
+
+<p> MY FISRT PIPE PURE </p>
+<p>{{ students | pure }}</p>
+<p> MY FIRST PIPE IMPURE</p>
+<p>{{ students | impure }}</p>
+
+<button (click)="students.push(12)">add neew number</button>
+<button (click)="addNumber()">add neew number in ts</button>
+
+<!-- <user-card
   [name]="selectedUser.name"
   [email]="selectedUser.email"
   (sendData)="receiveData($event)"
@@ -17,9 +32,6 @@
   <p>My HTML from father</p>
   <button>My button from father</button>
 </user-card>
-} @else{
-<p>user card destroyed</p>
-}
 
 <button (click)="addVideo()">ADD new Video to Youtube</button>
 <div
@@ -37,7 +49,7 @@
 <div *ngCreateHtml = "userCardCreated" (sendMessage)="getColor($event)">
     <p>My Custom Structural Directive</p>
     <p>Example</p>
-</div>
+</div> -->
 
 <!-- <p> RESULT: {{result}}</p>
 <div class="container">
