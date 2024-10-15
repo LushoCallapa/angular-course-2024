@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import {MatCardModule} from '@angular/material/card';
+import { MatButtonModule } from "@angular/material/button";
 import { UserCardComponent } from './user-card/user-card.component';
 import { CalculatorComponent } from './calculator/calculator.component';
 import { HistoryComponent } from './history/history.component';
@@ -32,7 +34,9 @@ interface IPerson{
     AppColorsDirective,
     CreateHtmlDirective,
     PurePipe,
-    ImpurePipe
+    ImpurePipe,
+    MatCardModule,
+    MatButtonModule
   ],
   templateUrl: "./app.component.html",
   styleUrl: "./app.component.scss",
