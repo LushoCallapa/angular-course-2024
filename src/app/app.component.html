@@ -8,7 +8,7 @@
 <button (click) = "selectedUser = users[0]">Change to user 0</button>
 <button (click) = "selectedUser = users[1]">Change to user 1</button> -->
 
-<p>PIPES</p>
+<!-- <p>PIPES</p>
 
 <P> {{ users | json }} </P>
 <p> {{ 'juan' | uppercase }} </p>
@@ -63,7 +63,17 @@
 <button type="button" class="btn btn-info">Info</button>
 <button type="button" class="btn btn-light">Light</button>
 <button type="button" class="btn btn-dark">Dark</button>
-<button type="button" class="btn btn-link">Link</button>
+<button type="button" class="btn btn-link">Link</button> -->
+
+
+<button type="button" class="btn btn-dark" [routerLink]="'/user-card'">User Card</button>
+<button type="button" class="btn btn-link" [routerLink]="'/calculator'">Calculator</button>
+<button type="button" class="btn btn-light" [routerLink]="'/counter'">Counter</button>
+<div style="border: 2px solid yellow">
+  <router-outlet>
+  </router-outlet>
+</div>
+
 
 <!-- <user-card
   [name]="selectedUser.name"

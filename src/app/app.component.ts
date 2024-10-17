@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import {MatCardModule} from '@angular/material/card';
 import { MatButtonModule } from "@angular/material/button";
 import { UserCardComponent } from './user-card/user-card.component';
@@ -25,6 +25,7 @@ interface IPerson{
   standalone: true,
   imports: [
     RouterOutlet,
+    RouterLink,
     UserCardComponent,
     CalculatorComponent,
     HistoryComponent,
