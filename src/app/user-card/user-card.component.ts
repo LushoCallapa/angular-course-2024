@@ -18,11 +18,13 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { SharedModule } from "../shared/shared.module";
+import { ActivatedRoute } from "@angular/router";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "user-card",
   standalone: true,
-  imports: [CommonModule, FormsModule, SharedModule],
+  imports: [FormsModule, CommonModule, SharedModule],
   templateUrl: "./user-card.component.html",
   styleUrl: "./user-card.component.scss",
 })
@@ -42,61 +44,76 @@ export class UserCardComponent
 
   @Output() sendData = new EventEmitter();
 
-  @ViewChild('buttonTest', {static: false}) buttonTest!: ElementRef
-  @ViewChild('buttonShow', {static: true}) buttonShow!: ElementRef
+  @ViewChild('buttonTest', { static: false }) buttonTest!: ElementRef
+  @ViewChild('buttonShow', { static: true }) buttonShow!: ElementRef
 
-  password: string = "";
-  showButton: boolean = true;
+  password: string = "password";
+  showButton:boolean = true
 
-  constructor() {
-    //console.log("user card connstructor");
+  subscription: Subscription = new Subscription();
+
+  constructor(private activatedRoute: ActivatedRoute) {
+    //console.log("user card constructor");
+
+    this.subscription.add(this.activatedRoute.params.subscribe((params) => {
+      console.log("PARAMS: ", params);
+    }))
+  
+    console.log('Snapshot: ', this.activatedRoute.snapshot.params )   
   }
 
   ngOnInit(): void {
-    //console.log("user card On Init");
+    //console.log("user card on init");
 
-    this.buttonShow.nativeElement.textContent = "Button Show OnInit";
-    // this.buttonTest.nativeElement.textContent = "Button Test OnInit";
-    //this.password = this.name + this.email + ' PASSWORD'
+    this.buttonShow.nativeElement.textContent = 'button Show in OnInit'
+    
+    // this.password = this.name + ' ' +  this.email + ' PASSWORD'
   }
 
   ngOnDestroy(): void {
     //console.log("user card Destroy");
+
+    this.subscription.unsubscribe()
   }
+
   ngOnChanges(changes: SimpleChanges): void {
-    //console.log("user card Change");
+    //console.log("CHANGES:", changes);
 
     this.password =
       changes["name"].currentValue +
       " " +
       changes["email"].currentValue +
-      " Password";
+      " PASSWORD";
   }
 
   ngDoCheck(): void {
-    //console.log("Do Check User Card");
+    //console.log("DO CHECK user card");
   }
 
   ngAfterContentInit(): void {
-    //console.log("After Content Init User Card");
-  }
-
-  ngAfterViewInit(): void {
-    //console.log("NG AFTER VIEW INIT")
-    //console.log("Buttom Test", this.buttonTest)
-    if(this.buttonTest){
-      this.buttonTest.nativeElement.textContent = "Button Test Afeter View Init";
-    }
+    //console.log("NG AFTER CONTENT INIT");
   }
 
   ngAfterContentChecked(): void {
-    //console.log("AfterContentChecked")
+    //console.log('AFTER CONTENT CHECKED')
+  }
+
+  ngAfterViewInit(): void {
+    //console.log('NG AFTER VIEW INIT')
+    //console.log('BUTTON TEST', this.buttonTest)   
+
+    if(this.buttonTest){
+      this.buttonTest.nativeElement.textContent = 'button Test in OnInit'
+    }
+    
   }
 
   ngAfterViewChecked(): void {
-    //console.log("AfterViewChecked")
+    //console.log('NG AFTER VIEW CHECKED')
   }
+
   public onSendData() {
-    this.sendData.emit("hi from child component");
+    //console.log('onSendData in child')
+    this.sendData.emit("Hi from child component");
   }
 }

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet, Router } from '@angular/router';
 import {MatCardModule} from '@angular/material/card';
 import { MatButtonModule } from "@angular/material/button";
 import { UserCardComponent } from './user-card/user-card.component';
@@ -52,7 +52,7 @@ export class AppComponent {
   persons: IPerson[];
   youtube = from([1, 2, 3, 4, 5, 6]);
   students: number[] = [1, 2, 3, 4, 5, 6,7,8,9];
-  constructor() {
+  constructor(private router: Router) {
     this.persons = [
       { name: "Luis", age: 20, gender: "male" },
       { name: "Juana", age: 17, gender: "female" },
@@ -63,6 +63,14 @@ export class AppComponent {
       console.log("Susbribed 1 You Tube Data", res);
     });
   }
+
+  public goToStudentModule() {
+    this.router.navigate(['student'])
+  }
+  public goToCard() {
+    this.router.navigate(['card', 1])
+  }
+
 
   public sumPure(a:number, b:number): number {
     return a + b;
