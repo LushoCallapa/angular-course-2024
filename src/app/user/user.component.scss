@@ -78,3 +78,9 @@
     top: -15px;
     right: -25px;
   }
+
+  .closed {
+    background-color: red;
+    color: white;
+    cursor: not-allowed;
+  }

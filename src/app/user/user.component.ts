@@ -13,11 +13,18 @@ export class UserComponent {
   @Input() user: any;
   socialNetworks = socialNetworks
   availableNetworks :any[] = [];
-
+  isProfileClosed: boolean = false;
   ngOnInit() {
     this.updateAvailableNetworks();
+    if(this.user.status === 'inactive')
+      this.isProfileClosed = true;
   }
 
+  closeProfile() {
+    this.user.status = 'inactive';
+    this.isProfileClosed = true;
+    console.log(`${this.user.name} has closed their profile.`);
+  }
 
   selectSubscription(type: string) {
     this.user.subscriptionType = type;

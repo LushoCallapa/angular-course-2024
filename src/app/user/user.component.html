@@ -5,11 +5,13 @@
     <p>Subscription Type</p>
     <button 
       [ngClass]="{'active': user.subscriptionType === 'free'}" 
-      (click)="selectSubscription('free')">Free
+      (click)="selectSubscription('free')"
+      [disabled]="user.status === 'inactive'">Free
     </button>
     <button 
       [ngClass]="{'active': user.subscriptionType === 'premium'}" 
-      (click)="selectSubscription('premium')">Premium
+      (click)="selectSubscription('premium')"
+      [disabled]="user.status === 'inactive'">Premium
     </button>
   </div>  
 <p> Amount: {{user.amountAvailable}}$ </p>
@@ -21,7 +23,7 @@
     >
       <div class="box" [ngClass]="network.platform">
         {{ network.platform }}
-        <button (click)="subscribe(network.id)" class="subscribe-btn">+</button>
+        <button (click)="subscribe(network.id)" class="subscribe-btn" [disabled]="user.status === 'inactive'">+</button>
       </div>
     </div>
   </div>
@@ -35,7 +37,8 @@
         <div class="box" [ngClass]="getNetworkById(subscription)?.platform">
           <button 
             (click)="unsubscribe(subscription)" 
-            class="cross-btn">x
+            class="cross-btn"
+            [disabled]="user.status === 'inactive'">x
           </button>
           {{ getNetworkById(subscription)?.platform }}
         </div>
@@ -43,3 +46,9 @@
     </div>
   </div>
   
+  <button 
+  (click)="closeProfile()" 
+  [ngClass]="{'closed': isProfileClosed}" 
+  [disabled]="isProfileClosed">
+  {{ isProfileClosed ? 'Profile is closed' : 'Close Profile' }}
+</button>
