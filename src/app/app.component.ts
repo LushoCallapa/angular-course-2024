@@ -27,12 +27,11 @@ export class AppComponent {
     userObservable.subscribe(user => {
       const platformInfo = socialNetworks.find(net => net.id === platformId);
       if(platformInfo?.platformType === 'premium'){
-        if (user.subscriptionType === 'premium' && user.amountAvailable >=5) {
+        if (user.subscriptionType === 'premium' && user.amountAvailable >=5 && user.status === 'active') {
           user.notifications.push(`${platform} added a new ${type}`);
           user.amountAvailable -= 5;
-        } else {
         }
-      }else{
+      }else if(user.status === 'active'){//Esto por la restriccion del examen de lo que entendi si el user esta inactivo tampoco recibe mensaje
         user.notifications.push(`${platform} added a new ${type}`);
       }
       
