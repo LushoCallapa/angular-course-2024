@@ -1,4 +1,6 @@
-<div *ngFor="let message of notifications">
+<!-- PARA QUE EL MENSAJE MAS RECIENTE SEA PRIMERO -->
+
+<div *ngFor="let message of notifications | reverseArray">
     <p class="notification">{{ message }}</p>
   </div>
   
