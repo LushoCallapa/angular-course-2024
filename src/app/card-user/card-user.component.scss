@@ -1,0 +1,22 @@
+.button-group {
+    display: flex;
+    margin-bottom: 10px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    background-color: lightgray;
+    color: black;
+    transition: background-color 0.3s;
+  }
+  
+  button.active {
+    background-color: blue;
+    color: white;
+  }
+  
+  .item {
+    margin-bottom: 20px;
+  }

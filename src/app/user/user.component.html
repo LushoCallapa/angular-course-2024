@@ -1,0 +1,45 @@
+<p> Name: {{user.name}}</p>
+<p> Age: {{user.age}}</p>
+<p> Status: {{user.status}}</p>
+<div class="subscription-container">
+    <p>Subscription Type</p>
+    <button 
+      [ngClass]="{'active': user.subscriptionType === 'free'}" 
+      (click)="selectSubscription('free')">Free
+    </button>
+    <button 
+      [ngClass]="{'active': user.subscriptionType === 'premium'}" 
+      (click)="selectSubscription('premium')">Premium
+    </button>
+  </div>  
+<p> Amount: {{user.amountAvailable}}$ </p>
+<p>Social Networks</p>
+<div class="social-container">
+    <div 
+      *ngFor="let network of availableNetworks" 
+      class="mini-card available"
+    >
+      <div class="box" [ngClass]="network.platform">
+        {{ network.platform }}
+        <button (click)="subscribe(network.id)" class="subscribe-btn">+</button>
+      </div>
+    </div>
+  </div>
+<p>Subscription</p>
+<div class="social-container">
+    <div 
+      *ngFor="let subscription of user.subscriptions" 
+      class="mini-card subscribed"
+    >
+      <ng-container *ngIf="getNetworkById(subscription)">
+        <div class="box" [ngClass]="getNetworkById(subscription)?.platform">
+          <button 
+            (click)="unsubscribe(subscription)" 
+            class="cross-btn">x
+          </button>
+          {{ getNetworkById(subscription)?.platform }}
+        </div>
+      </ng-container>
+    </div>
+  </div>
+  

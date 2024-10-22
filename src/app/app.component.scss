@@ -1,0 +1,61 @@
+.container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px 0px;
+  }
+  
+  .card-container {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .item {
+    box-sizing: border-box;
+  }
+
+  .item-user {
+    border: 1px solid black;
+    box-sizing: border-box;
+  }
+  
+  .box {
+    width: 100px;
+    height: 50px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 5px;
+    position: relative;
+  }
+  
+  .youtube {
+    background-color: #f28e8e;
+  }
+  
+  .tiktok {
+    background-color: #8e6f9f;
+  }
+  
+  .instagram {
+    background-color: #f7c979;
+  }
+  
+  .facebook {
+    background-color: #87b4f8;
+  }
+  
+  .whatsapp {
+    background-color: #a9df96;
+  }
+  
+  .star {
+    position: absolute;
+    top: 0;
+    left: 10px;
+  }
+  

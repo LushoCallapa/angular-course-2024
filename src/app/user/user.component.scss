@@ -1,0 +1,80 @@
+.subscription-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    border: 1px solid lightgray;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    margin: 0 10px;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  button.active {
+    background-color: green;
+    color: white;
+  }
+  
+  .social-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .mini-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    flex: 0 1 calc(33.33% - 10px);
+    text-align: center;
+  }
+  
+  .subscribed {
+    background-color: #e0ffe0;
+  }
+  
+  .youtube {
+    background-color: #f28e8e;
+    padding: 10px;
+  }
+  
+  .tiktok {
+    background-color: #8e6f9f;
+    padding: 10px;
+  }
+  
+  .instagram {
+    background-color: #f7c979;
+    padding: 10px;
+  }
+  
+  .facebook {
+    background-color: #87b4f8;
+    padding: 10px;
+  }
+  
+  .whatsapp {
+    background-color: #a9df96;
+    padding: 10px;
+  }
+  .box {
+    position: relative;
+    padding: 10px;
+    text-align: left;
+  }
+  .cross-btn,.subscribe-btn {
+    background: none;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+    cursor: pointer;
+    position: absolute;
+    top: -15px;
+    right: -25px;
+  }

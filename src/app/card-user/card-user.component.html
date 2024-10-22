@@ -1,0 +1,18 @@
+<div class="button-group">
+    <button 
+      [ngClass]="{'active': selectedTab === 'user'}" 
+      (click)="selectTab('user')">User
+    </button>
+    <button 
+      [ngClass]="{'active': selectedTab === 'notifications'}" 
+      (click)="selectTab('notifications')">Notifications
+    </button>
+  </div>
+
+  <div *ngIf="selectedTab === 'user'">
+    <user [user]="user"></user>
+  </div>
+
+  <div *ngIf="selectedTab === 'notifications'">
+    <notification [notifications]="user.notifications"></notification>
+  </div>
