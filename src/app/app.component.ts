@@ -13,6 +13,7 @@ import { AppColorsDirective } from './app-colors.directive';
 import { CreateHtmlDirective } from './create-html.directive';
 import { PurePipe } from './pure.pipe';
 import { ImpurePipe } from './impure.pipe';
+import { FormsModule } from '@angular/forms';
 
 interface IPerson{
   name:string,
@@ -37,12 +38,17 @@ interface IPerson{
     PurePipe,
     ImpurePipe,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    FormsModule
   ],
   templateUrl: "./app.component.html",
   styleUrl: "./app.component.scss",
 })
 export class AppComponent {
+
+  name:string = 'testName'
+  lastName:string = ''
+
   users = [
     { name: "abc", email: "abc@gmail.com" },
     { name: "dfg", email: "pepe@gmail.com" },
@@ -62,6 +68,10 @@ export class AppComponent {
     this.youtube.subscribe((res) => {
       console.log("Susbribed 1 You Tube Data", res);
     });
+  }
+
+  onSubmit(data:any){
+    console.log('TEMPLATE DRIVEN FORM: ', data)
   }
 
   public onCalculator(){

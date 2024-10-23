@@ -65,6 +65,23 @@
 <button type="button" class="btn btn-dark">Dark</button>
 <button type="button" class="btn btn-link">Link</button> -->
 
+<mat-card-content>
+  <form #testForm="ngForm" (ngSubmit)="onSubmit(testForm)">
+    <p>name</p>
+    <input type="text" ngModel name="nameF">
+    <p>lastName</p>
+    <input type="text" ngModel name="lastNameF">
+    <p>age</p>
+    <input type="text" ngModel name="ageF">
+    <p>city</p>
+    <input type="text" ngModel name="cityF">
+    <p>phone</p>
+    <input type="text" ngModel name="phoneF">
+    <button type="submit">send data</button>
+    <button type="reset">reset</button>
+  </form>
+</mat-card-content>
+
 
 <button type="button" class="btn btn-light" [routerLink]="['card', 8]">User Card param 8</button>
 <button type="button" class="btn btn-light" (click)="goToCard()">User Card param 1</button>
