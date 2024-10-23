@@ -64,6 +64,10 @@ export class AppComponent {
     });
   }
 
+  public onCalculator(){
+    this.router.navigate(['calculator'], {queryParams: {name: 'John', age: 20}})
+  }
+
   public goToStudentModule() {
     this.router.navigate(['student'])
   }
