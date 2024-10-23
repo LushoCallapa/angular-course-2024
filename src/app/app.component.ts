@@ -13,7 +13,7 @@ import { AppColorsDirective } from './app-colors.directive';
 import { CreateHtmlDirective } from './create-html.directive';
 import { PurePipe } from './pure.pipe';
 import { ImpurePipe } from './impure.pipe';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 interface IPerson{
   name:string,
@@ -39,12 +39,14 @@ interface IPerson{
     ImpurePipe,
     MatCardModule,
     MatButtonModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   templateUrl: "./app.component.html",
   styleUrl: "./app.component.scss",
 })
 export class AppComponent {
+  scoreControl = new FormControl<string>('asdasdasd', [Validators.required])
 
   name:string = 'testName'
   lastName:string = ''
@@ -68,8 +70,16 @@ export class AppComponent {
     this.youtube.subscribe((res) => {
       console.log("Susbribed 1 You Tube Data", res);
     });
+
+    this.scoreControl.valueChanges.subscribe((res) => {
+      console.log('SCORE VALUE OBSERVABLE: ', res)
+    })
   }
 
+  onPrintScore(){
+    console.log('SCORE: ', this.scoreControl.value)
+  }
+  
   onSubmit(data:any){
     console.log('TEMPLATE DRIVEN FORM: ', data)
   }
