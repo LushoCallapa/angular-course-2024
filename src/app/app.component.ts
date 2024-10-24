@@ -13,12 +13,20 @@ import { AppColorsDirective } from './app-colors.directive';
 import { CreateHtmlDirective } from './create-html.directive';
 import { PurePipe } from './pure.pipe';
 import { ImpurePipe } from './impure.pipe';
-import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
 interface IPerson{
   name:string,
   age: number,
   gender: string,
+}
+
+interface IForm {
+  name: string
+  score: string
+  school: string
+  proffesor: string
+  university: string
 }
 
 @Component({
@@ -62,8 +70,9 @@ export class AppComponent {
   students: number[] = [1, 2, 3, 4, 5, 6,7,8,9];
 
   studentForm!: FormGroup
+  student2Form!: UntypedFormGroup
 
-  constructor(private router: Router, private formBuilder: FormBuilder) {
+  constructor(private router: Router, private formBuilder: FormBuilder,  private untypedFormBuilder: UntypedFormBuilder) {
     this.persons = [
       { name: "Luis", age: 20, gender: "male" },
       { name: "Juana", age: 17, gender: "female" },
@@ -84,6 +93,24 @@ export class AppComponent {
       proffesor: [''],
       university: ['']
     })
+
+    this.student2Form = this.untypedFormBuilder.group({
+      name: ['', Validators.required],
+      score: [''],
+      school: [''],
+      proffesor: [''],
+      university: ['']
+    })
+
+    
+    /* this.studentForm = new FormGroup({
+      name: new FormControl<string>('sdasdasdasd', [Validators.required]),
+      score: new FormControl<string>('sdfsdfsdf'),
+      school: new FormControl<string>(''),
+      proffesor: new FormControl<string>(''),
+      university: new FormControl<string>('')
+    }) */
+
     this.studentForm.valueChanges.subscribe((res) => {
       console.log('FORM GROUP OBSERVABLE: ', res)
     })
