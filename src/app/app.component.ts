@@ -13,7 +13,7 @@ import { AppColorsDirective } from './app-colors.directive';
 import { CreateHtmlDirective } from './create-html.directive';
 import { PurePipe } from './pure.pipe';
 import { ImpurePipe } from './impure.pipe';
-import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 interface IPerson{
   name:string,
@@ -60,7 +60,10 @@ export class AppComponent {
   persons: IPerson[];
   youtube = from([1, 2, 3, 4, 5, 6]);
   students: number[] = [1, 2, 3, 4, 5, 6,7,8,9];
-  constructor(private router: Router) {
+
+  studentForm!: FormGroup
+
+  constructor(private router: Router, private formBuilder: FormBuilder) {
     this.persons = [
       { name: "Luis", age: 20, gender: "male" },
       { name: "Juana", age: 17, gender: "female" },
@@ -74,6 +77,20 @@ export class AppComponent {
     this.scoreControl.valueChanges.subscribe((res) => {
       console.log('SCORE VALUE OBSERVABLE: ', res)
     })
+    this.studentForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      score: [''],
+      school: [''],
+      proffesor: [''],
+      university: ['']
+    })
+    this.studentForm.valueChanges.subscribe((res) => {
+      console.log('FORM GROUP OBSERVABLE: ', res)
+    })
+  }
+
+  onSendData() {
+    console.log('FORM GROUP: ', this.studentForm)
   }
 
   onPrintScore(){
