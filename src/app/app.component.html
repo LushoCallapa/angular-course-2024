@@ -68,66 +68,95 @@
 <mat-card-content>
   <form #testForm="ngForm" (ngSubmit)="onSubmit(testForm)">
     <p>name</p>
-    <input type="text" ngModel name="nameF">
+    <input type="text" #nameT="ngModel" name="nameF" ngModel required />
+    <div *ngIf="nameT.invalid && nameT.touched" style="color: red">
+      THERE IS AN ERROR
+    </div>
+    <p>{{ nameT.invalid | json }}</p>
+    <p>{{ nameT.touched | json }}</p>
     <p>lastName</p>
-    <input type="text" ngModel name="lastNameF">
+    <input type="text" ngModel name="lastNameF" />
     <p>age</p>
-    <input type="text" ngModel name="ageF">
+    <input type="text" ngModel name="ageF" />
     <p>city</p>
-    <input type="text" ngModel name="cityF">
+    <input type="text" ngModel name="cityF" />
     <p>phone</p>
-    <input type="text" ngModel name="phoneF">
+    <input type="text" ngModel name="phoneF" />
     <button type="submit">send data</button>
     <button type="reset">reset</button>
-    <p>REACTIVE FORM</p>
-    <input type="text" [formControl]="scoreControl">
-    <button (click)="onPrintScore()">print score</button>
-    <p>FORM GROUP</p>
-      <form [formGroup]="studentForm">
-        <p>name</p>
-        <input type="text" [formControlName]="'name'">
-        <p>score</p>
-        <input type="text" [formControlName]="'score'">
-        <p>school</p>
-        <input type="text" [formControlName]="'school'">
-        <p>proffesor</p>
-        <input type="text" [formControlName]="'proffesor'">
-        <p>university</p>
-        <input type="text" [formControlName]="'university'">
-      </form>
-      <button (click)="onSendData()"
-      [disabled]="studentForm.invalid">send data</button>
-
   </form>
+  <p>REACTIVE FORM</p>
+  <input type="text" [formControl]="scoreControl" />
+  <button (click)="onPrintScore()">print score</button>
+  <p>FORM GROUP</p>
+  <form [formGroup]="studentForm">
+    <p>name</p>
+    <input type="text" [formControlName]="'name'" />
+    <!-- <div *ngIf="studentForm.get('name')?.errors?.required">
+    name is required
+  </div> -->
+    <div
+      *ngIf="
+        studentForm.get('name')?.invalid && studentForm.get('name')?.touched
+      "
+    >
+      name is required
+    </div>
+    <button (click)="print()">print name control</button>
+    <p>score</p>
+    <input type="text" [formControlName]="'score'" />
+    <p>school</p>
+    <input type="text" [formControlName]="'school'" />
+    <p>proffesor</p>
+    <input type="text" [formControlName]="'proffesor'" />
+    <p>university</p>
+    <input type="text" [formControlName]="'university'" />
+  </form>
+  <button (click)="onSendData()" [disabled]="studentForm.invalid">
+    send data
+  </button>
 </mat-card-content>
 
-
-<button type="button" class="btn btn-light" [routerLink]="['card', 8]">User Card param 8</button>
-<button type="button" class="btn btn-light" (click)="goToCard()">User Card param 1</button>
-<button 
-type="button" 
-class="btn btn-dark" 
-[routerLink]="'/calculator'" 
-[queryParams]="{ name: 'test',  lastName: 'perez'}">
-Calculator QP from HTML
+<button type="button" class="btn btn-light" [routerLink]="['card', 8]">
+  User Card param 8
 </button>
-<button 
-type="button" 
-class="btn btn-dark"
-(click)="onCalculator()">
-Calculator QP from TS
+<button type="button" class="btn btn-light" (click)="goToCard()">
+  User Card param 1
 </button>
-<button type="button" class="btn btn-light" [routerLink]="'/counter'">Counter</button>
-<button type="button" class="btn btn-success" [routerLink]="'/student/score'">Student Module / score</button>
-<button type="button" class="btn btn-success" [routerLink]="'/student/classmate'">Student Module / classmate</button>
-<button type="button" class="btn btn-danger" [routerLink]="'/student/average'">Student module/ score/average</button>
+<button
+  type="button"
+  class="btn btn-dark"
+  [routerLink]="'/calculator'"
+  [queryParams]="{ name: 'test', lastName: 'perez' }"
+>
+  Calculator QP from HTML
+</button>
+<button type="button" class="btn btn-dark" (click)="onCalculator()">
+  Calculator QP from TS
+</button>
+<button type="button" class="btn btn-light" [routerLink]="'/counter'">
+  Counter
+</button>
+<button type="button" class="btn btn-success" [routerLink]="'/student/score'">
+  Student Module / score
+</button>
+<button
+  type="button"
+  class="btn btn-success"
+  [routerLink]="'/student/classmate'"
+>
+  Student Module / classmate
+</button>
+<button type="button" class="btn btn-danger" [routerLink]="'/student/average'">
+  Student module/ score/average
+</button>
 
-<button type="button" class="btn btn-secondary" (click)="goToStudentModule()"> from TS to Student Module </button>
+<button type="button" class="btn btn-secondary" (click)="goToStudentModule()">
+  from TS to Student Module
+</button>
 <div style="border: 2px solid yellow">
-  <router-outlet>
-  </router-outlet>
+  <router-outlet> </router-outlet>
 </div>
-
 
 <!-- <user-card
   [name]="selectedUser.name"

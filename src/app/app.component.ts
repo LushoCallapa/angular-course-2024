@@ -86,6 +86,7 @@ export class AppComponent {
     this.scoreControl.valueChanges.subscribe((res) => {
       console.log('SCORE VALUE OBSERVABLE: ', res)
     })
+    
     this.studentForm = this.formBuilder.group({
       name: ['', Validators.required],
       score: [''],
@@ -102,7 +103,7 @@ export class AppComponent {
       university: ['']
     })
 
-    
+
     /* this.studentForm = new FormGroup({
       name: new FormControl<string>('sdasdasdasd', [Validators.required]),
       score: new FormControl<string>('sdfsdfsdf'),
@@ -114,6 +115,10 @@ export class AppComponent {
     this.studentForm.valueChanges.subscribe((res) => {
       console.log('FORM GROUP OBSERVABLE: ', res)
     })
+  }
+
+  print(){
+    console.log('FORM NAME: ', this.studentForm.get('name'))
   }
 
   onSendData() {
