@@ -1,32 +1,42 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { RouterLink, RouterOutlet, Router } from '@angular/router';
-import {MatCardModule} from '@angular/material/card';
+import { Component, EventEmitter, Output } from "@angular/core";
+import { RouterLink, RouterOutlet, Router } from "@angular/router";
+import { MatCardModule } from "@angular/material/card";
 import { MatButtonModule } from "@angular/material/button";
-import { UserCardComponent } from './user-card/user-card.component';
-import { CalculatorComponent } from './calculator/calculator.component';
-import { HistoryComponent } from './history/history.component';
-import { CommonModule } from '@angular/common';
-import { PersonCardComponent } from './person-card/person-card.component';
-import { CounterComponent } from './counter/counter.component';
-import { filter, from, map, tap } from 'rxjs';
-import { AppColorsDirective } from './app-colors.directive';
-import { CreateHtmlDirective } from './create-html.directive';
-import { PurePipe } from './pure.pipe';
-import { ImpurePipe } from './impure.pipe';
-import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { UserCardComponent } from "./user-card/user-card.component";
+import { CalculatorComponent } from "./calculator/calculator.component";
+import { HistoryComponent } from "./history/history.component";
+import { CommonModule } from "@angular/common";
+import { PersonCardComponent } from "./person-card/person-card.component";
+import { CounterComponent } from "./counter/counter.component";
+import { filter, from, map, tap } from "rxjs";
+import { AppColorsDirective } from "./app-colors.directive";
+import { CreateHtmlDirective } from "./create-html.directive";
+import { PurePipe } from "./pure.pipe";
+import { ImpurePipe } from "./impure.pipe";
+import { StudentService } from "./services/student.service";
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  Validators,
+} from "@angular/forms";
 
-interface IPerson{
-  name:string,
-  age: number,
-  gender: string,
+interface IPerson {
+  name: string;
+  age: number;
+  gender: string;
 }
 
 interface IForm {
-  name: string
-  score: string
-  school: string
-  proffesor: string
-  university: string
+  name: string;
+  score: string;
+  school: string;
+  proffesor: string;
+  university: string;
 }
 
 @Component({
@@ -48,16 +58,16 @@ interface IForm {
     MatCardModule,
     MatButtonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   templateUrl: "./app.component.html",
   styleUrl: "./app.component.scss",
 })
 export class AppComponent {
-  scoreControl = new FormControl<string>('asdasdasd', [Validators.required])
+  scoreControl = new FormControl<string>("asdasdasd", [Validators.required]);
 
-  name:string = 'testName'
-  lastName:string = ''
+  name: string = "testName";
+  lastName: string = "";
 
   users = [
     { name: "abc", email: "abc@gmail.com" },
@@ -67,42 +77,50 @@ export class AppComponent {
   userCardCreated: boolean = false;
   persons: IPerson[];
   youtube = from([1, 2, 3, 4, 5, 6]);
-  students: number[] = [1, 2, 3, 4, 5, 6,7,8,9];
+  students: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-  studentForm!: FormGroup
-  student2Form!: UntypedFormGroup
+  studentForm!: FormGroup;
+  student2Form!: UntypedFormGroup;
 
-  constructor(private router: Router, private formBuilder: FormBuilder,  private untypedFormBuilder: UntypedFormBuilder) {
+  constructor(
+    private _studentService: StudentService,
+    private router: Router,
+    private formBuilder: FormBuilder,
+    private untypedFormBuilder: UntypedFormBuilder
+  ) {
     this.persons = [
       { name: "Luis", age: 20, gender: "male" },
       { name: "Juana", age: 17, gender: "female" },
       { name: "Roberto", age: 16, gender: "male" },
       { name: "Rafaela", age: 20, gender: "female" },
     ];
+
+    this._studentService.getStudents().subscribe((res) => {
+      console.log('STUDENTS JSON: ', res)
+    });
     this.youtube.subscribe((res) => {
       console.log("Susbribed 1 You Tube Data", res);
     });
 
     this.scoreControl.valueChanges.subscribe((res) => {
-      console.log('SCORE VALUE OBSERVABLE: ', res)
-    })
-    
+      console.log("SCORE VALUE OBSERVABLE: ", res);
+    });
+
     this.studentForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      score: [''],
-      school: [''],
-      proffesor: [''],
-      university: ['']
-    })
+      name: ["", Validators.required],
+      score: [""],
+      school: [""],
+      proffesor: [""],
+      university: [""],
+    });
 
     this.student2Form = this.untypedFormBuilder.group({
-      name: ['', Validators.required],
-      score: [''],
-      school: [''],
-      proffesor: [''],
-      university: ['']
-    })
-
+      name: ["", Validators.required],
+      score: [""],
+      school: [""],
+      proffesor: [""],
+      university: [""],
+    });
 
     /* this.studentForm = new FormGroup({
       name: new FormControl<string>('sdasdasdasd', [Validators.required]),
@@ -113,42 +131,43 @@ export class AppComponent {
     }) */
 
     this.studentForm.valueChanges.subscribe((res) => {
-      console.log('FORM GROUP OBSERVABLE: ', res)
-    })
+      console.log("FORM GROUP OBSERVABLE: ", res);
+    });
   }
 
-  print(){
-    console.log('FORM NAME: ', this.studentForm.get('name'))
+  print() {
+    console.log("FORM NAME: ", this.studentForm.get("name"));
   }
 
   onSendData() {
-    console.log('FORM GROUP: ', this.studentForm)
+    console.log("FORM GROUP: ", this.studentForm);
   }
 
-  onPrintScore(){
-    console.log('SCORE: ', this.scoreControl.value)
-  }
-  
-  onSubmit(data:any){
-    console.log('TEMPLATE DRIVEN FORM: ', data)
+  onPrintScore() {
+    console.log("SCORE: ", this.scoreControl.value);
   }
 
-  public onCalculator(){
-    this.router.navigate(['calculator'], {queryParams: {name: 'John', age: 20}})
+  onSubmit(data: any) {
+    console.log("TEMPLATE DRIVEN FORM: ", data);
+  }
+
+  public onCalculator() {
+    this.router.navigate(["calculator"], {
+      queryParams: { name: "John", age: 20 },
+    });
   }
 
   public goToStudentModule() {
-    this.router.navigate(['student'])
+    this.router.navigate(["student"]);
   }
   public goToCard() {
-    this.router.navigate(['card', 1])
+    this.router.navigate(["card", 1]);
   }
 
-
-  public sumPure(a:number, b:number): number {
+  public sumPure(a: number, b: number): number {
     return a + b;
   }
-  public sumImpure(a:number, b:number): number {
+  public sumImpure(a: number, b: number): number {
     return a + b + Math.random();
   }
 
@@ -156,16 +175,15 @@ export class AppComponent {
     this.youtube
       .pipe(
         map((res) => {
-          console.log('MAP',res);
-          if(res % 2 === 0){
+          console.log("MAP", res);
+          if (res % 2 === 0) {
             return res;
-          } 
-          else{
+          } else {
             return null;
           }
         }),
-        tap((res)=> console.log("VALUE, TAP",res)),
-        filter((res :number | null)=> res!=null)
+        tap((res) => console.log("VALUE, TAP", res)),
+        filter((res: number | null) => res != null)
       )
       .subscribe((res) => {
         console.log("Susbribed 2 You Tube Data", res);
@@ -188,11 +206,11 @@ export class AppComponent {
     this.persons = this.persons.filter((person) => person.age < 18);
   }
 
-  public getColor(value: any){
+  public getColor(value: any) {
     console.log("value", value);
   }
   public addNumber() {
-    this.students = [...this.students, 12]
+    this.students = [...this.students, 12];
   }
   history: Array<[string, number]> = [];
   result: number = 0;
