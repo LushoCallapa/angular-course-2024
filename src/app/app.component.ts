@@ -14,6 +14,7 @@ import { CreateHtmlDirective } from "./create-html.directive";
 import { PurePipe } from "./pure.pipe";
 import { ImpurePipe } from "./impure.pipe";
 import { StudentService } from "./services/student.service";
+import { AuthService } from "./auth.service";
 import {
   FormBuilder,
   FormControl,
@@ -83,6 +84,7 @@ export class AppComponent {
   student2Form!: UntypedFormGroup;
 
   constructor(
+    private _authService: AuthService,
     private _studentService: StudentService,
     private router: Router,
     private formBuilder: FormBuilder,
@@ -95,9 +97,9 @@ export class AppComponent {
       { name: "Rafaela", age: 20, gender: "female" },
     ];
 
-    this._studentService.getStudents().subscribe((res) => {
-      console.log('STUDENTS JSON: ', res)
-    });
+    // this._studentService.getStudents().subscribe((res) => {
+    //   console.log('STUDENTS JSON: ', res)
+    // });
     this.youtube.subscribe((res) => {
       console.log("Susbribed 1 You Tube Data", res);
     });
@@ -130,9 +132,9 @@ export class AppComponent {
       university: new FormControl<string>('')
     }) */
 
-    this.studentForm.valueChanges.subscribe((res) => {
-      console.log("FORM GROUP OBSERVABLE: ", res);
-    });
+    // this.studentForm.valueChanges.subscribe((res) => {
+    //   console.log("FORM GROUP OBSERVABLE: ", res);
+    // });
   }
 
   print() {
@@ -188,6 +190,11 @@ export class AppComponent {
       .subscribe((res) => {
         console.log("Susbribed 2 You Tube Data", res);
       });
+  }
+
+  onLogin(){
+    this._authService.login()
+    this.router.navigate(['student'])
   }
 
   public countFemale() {
