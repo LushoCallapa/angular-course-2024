@@ -3,9 +3,12 @@
   <button (click)="handleAddCity()" class="add-city-button">Añadir Ciudad</button>
 </div>
 
+<div>
+  <filter (searchChanged)="onSearch($event)"></filter>
+</div>
+
 <div class="container">
-  <div class="item-wrapper" *ngFor="let city of citiesList">
-    <item [city]="city" 
-    (deleteCityOutput)="handleDeleteCity($event)"></item>
+  <div class="item-wrapper" *ngFor="let city of filteredCities">
+    <item [city]="city" (deleteCityOutput)="handleDeleteCity($event)"></item>
   </div>
 </div>

@@ -1,16 +1,5 @@
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-  }
-  
-  .item-wrapper {
-    flex: 0 0 50%;
-    box-sizing: border-box;
-    padding: 5px;
-  }
 
-  .city-input-container {
+.container-search {
     display: inline-flex;
     align-items: center;
     border-radius: 25px;
@@ -21,10 +10,10 @@
     width: 100%;
     max-width: 500px;
     margin-left: 20px;
-    margin-bottom: 10px;
-}
-
-.city-input {
+    margin-top: 5px;
+  }
+  
+  .input-class {
     flex: 1;
     padding: 10px 15px;
     border: 1px solid #ccc;
@@ -32,26 +21,26 @@
     font-size: 16px;
     margin-right: 10px;
     transition: border-color 0.3s ease;
-}
-
-.city-input:focus {
+  }
+  
+  .input-class:focus {
     outline: none;
     border-color: #4e81e0;
-}
-
-.add-city-button {
+  }
+  
+  .button-search {
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #4e81e0;
+    background-color: #4e81e0; 
     color: white;
     border: none;
     border-radius: 25px;
     cursor: pointer;
     transition: background-color 0.3s ease;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-.add-city-button:hover {
+  }
+  
+  .button-search:hover {
     background-color: #3b6bbf;
-}
-
+  }
+  
